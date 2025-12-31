@@ -1,0 +1,23 @@
+version: 1
+type: video
+
+output:
+  resolution: 320x240
+  framerate: 30
+  codec: h264
+  crf: 23
+
+timeline:
+  - start: "0:00:00.000"
+    end: "0:00:02.000"
+    type: image
+    source: ../sample_image.png
+    fade_in: 0.5
+    fade_out: 0.5
+
+  - start: "0:00:02.000"
+    end: "0:00:03.000"
+    type: video
+    source: ../sample_video.mp4
+    fade_in: 0.25
+    fade_out: 0.25
