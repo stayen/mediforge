@@ -1,6 +1,6 @@
 [project]
 name = "mediforge"
-version = "0.7.5"
+version = "0.7.6"
 description = "Command-line media processing toolkit"
 readme = "README.md"
 license = { text = "MIT" }

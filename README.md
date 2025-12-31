@@ -357,6 +357,7 @@ mediforge audio normalize [OPTIONS] INPUT_FILE
 | `-o, --output PATH` | Output audio file path (required) |
 | `-l, --lufs FLOAT` | Target integrated loudness in LUFS (default: -14) |
 | `-t, --true-peak FLOAT` | Maximum true peak in dB (default: -1) |
+| `-r, --sample-rate INT` | Output sample rate in Hz (default: 48000) |
 | `--dry-run` | Print FFmpeg commands without executing |
 | `--help` | Show help |
 
@@ -368,8 +369,8 @@ mediforge audio normalize input.wav -o output.wav
 # Normalize to broadcast standard (-23 LUFS)
 mediforge audio normalize input.wav -o output.wav --lufs=-23
 
-# Custom settings
-mediforge audio normalize input.wav -o output.wav --lufs=-16 --true-peak=-2
+# Custom settings with sample rate
+mediforge audio normalize input.wav -o output.wav --lufs=-16 --true-peak=-2 --sample-rate=44100
 ```
 
 **Common LUFS targets:**
@@ -399,6 +400,7 @@ mediforge audio master [OPTIONS] INPUT_FILE
 |--------|-------------|
 | `-o, --output PATH` | Output audio file path (required) |
 | `-p, --preset NAME` | Mastering preset name (default: streaming) |
+| `-r, --sample-rate INT` | Output sample rate in Hz (default: 48000) |
 | `--list-presets` | List available presets and exit |
 | `--dry-run` | Print FFmpeg commands without executing |
 | `--help` | Show help |
@@ -408,8 +410,8 @@ mediforge audio master [OPTIONS] INPUT_FILE
 # Apply streaming preset
 mediforge audio master input.wav -o output.wav --preset=streaming
 
-# Apply podcast preset
-mediforge audio master input.wav -o output.wav --preset=podcast
+# Apply podcast preset with custom sample rate
+mediforge audio master input.wav -o output.wav --preset=podcast --sample-rate=44100
 
 # List all available presets
 mediforge audio master input.wav -o out.wav --list-presets

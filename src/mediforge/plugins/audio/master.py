@@ -18,6 +18,8 @@ from mediforge.utils.logging import get_logger
               help='Output audio file path')
 @click.option('--preset', '-p', type=str, default='streaming',
               help='Mastering preset name (default: streaming)')
+@click.option('--sample-rate', '-r', type=int, default=48000,
+              help='Output sample rate in Hz (default: 48000)')
 @click.option('--list-presets', is_flag=True, help='List available presets and exit')
 @click.option('--dry-run', is_flag=True, help='Print FFmpeg commands without executing')
 @click.pass_context
@@ -26,6 +28,7 @@ def master(
     input_file: Path,
     output: Path,
     preset: str,
+    sample_rate: int,
     list_presets: bool,
     dry_run: bool,
 ) -> None:
@@ -79,6 +82,7 @@ def master(
         'ffmpeg', '-y',
         '-i', str(input_file),
         '-af', filters,
+        '-ar', str(sample_rate),
         str(output),
     ]
 

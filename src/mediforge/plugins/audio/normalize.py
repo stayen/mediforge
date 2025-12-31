@@ -21,6 +21,8 @@ from mediforge.utils.logging import get_logger
               help='Target integrated loudness in LUFS (default: -14)')
 @click.option('--true-peak', '-t', type=float, default=-1.0,
               help='Maximum true peak in dB (default: -1)')
+@click.option('--sample-rate', '-r', type=int, default=48000,
+              help='Output sample rate in Hz (default: 48000)')
 @click.option('--dry-run', is_flag=True, help='Print FFmpeg commands without executing')
 @click.pass_context
 def normalize(
@@ -29,6 +31,7 @@ def normalize(
     output: Path,
     lufs: float,
     true_peak: float,
+    sample_rate: int,
     dry_run: bool,
 ) -> None:
     """
@@ -106,6 +109,7 @@ def normalize(
             target_offset=measured['target_offset'],
             target_lufs=lufs,
             true_peak=true_peak,
+            sample_rate=sample_rate,
         )
 
         executor.execute(

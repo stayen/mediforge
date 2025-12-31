@@ -411,12 +411,14 @@ class FFmpegCommandBuilder:
         target_offset: float,
         target_lufs: float = -14.0,
         true_peak: float = -1.0,
+        sample_rate: int = 48000,
     ) -> list[str]:
         """
         Build loudness normalization command (second pass).
 
         Args:
             measured_*: Values from analysis pass
+            sample_rate: Output sample rate in Hz
         """
         loudnorm_filter = (
             f"loudnorm=I={target_lufs}:TP={true_peak}:LRA=11:"
@@ -430,6 +432,7 @@ class FFmpegCommandBuilder:
             '-y',
             '-i', str(input_path),
             '-af', loudnorm_filter,
+            '-ar', str(sample_rate),
             str(output_path),
         ]
 
